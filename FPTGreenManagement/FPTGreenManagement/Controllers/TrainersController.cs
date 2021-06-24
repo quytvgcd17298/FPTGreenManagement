@@ -1,5 +1,6 @@
 ﻿using FPTGreenManagement.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -13,9 +14,12 @@ namespace FPTGreenManagement.Controllers
     [Authorize]
     public class TrainersController : Controller
     {
+        private UserManager<ApplicationUser> _userManager;
         private ApplicationDbContext _context;
         public TrainersController()
         {
+            _userManager = new UserManager<ApplicationUser>(
+         new UserStore<ApplicationUser>(new ApplicationDbContext()));
             _context = new ApplicationDbContext();
         }
         // GET: Trainers
@@ -54,15 +58,34 @@ namespace FPTGreenManagement.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
-        public ActionResult CourseAssign()
+        [HttpGet]
+        public ActionResult ChangePasswordTrainer(string id)
         {
-            var trainerId = User.Identity.GetUserId();
-            var courseAssign = _context.TrainerCourses
-                .Where(t => t.TrainerId == trainerId)
-                .Select(t => t.Course)
-                .Include(t => t.Category)
-                .ToList();
-            return View(courseAssign);
+            var userId = User.Identity.GetUserId();
+            var user = _context.Users.Where(t => t.Id.Equals(userId)).FirstOrDefault(model => model.Id == id);
+            var changePasswordViewModel = new AdminChangePasswordViewModel()
+            {
+                UserId = userId
+            };
+
+            return View(changePasswordViewModel);
+        }
+        [HttpPost]
+        public ActionResult ChangePasswordTrainer(AdminChangePasswordViewModel model)
+        {
+            var user = _context.Users.SingleOrDefault(t => t.Id == model.UserId);
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("Validation", "Some thing is wrong");
+                return View(model);
+            }
+            if (user.PasswordHash != null)
+            {
+                _userManager.RemovePassword(user.Id);
+            }
+            _userManager.AddPassword(user.Id, model.NewPassword);
+            return _userManager.GetRoles(user.Id).First() == "Trainer" ?
+                RedirectToAction("Index", "Trainers") : RedirectToAction("Index", "Trainers");
         }
     }
 }

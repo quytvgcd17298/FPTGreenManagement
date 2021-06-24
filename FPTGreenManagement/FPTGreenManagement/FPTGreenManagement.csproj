@@ -352,6 +352,8 @@
     <Content Include="Views\Staffs\ChangePasswordTrainee.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Trainees\ChangePasswordTrainee.cshtml" />
+    <Content Include="Views\Trainers\ChangePasswordTrainer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
