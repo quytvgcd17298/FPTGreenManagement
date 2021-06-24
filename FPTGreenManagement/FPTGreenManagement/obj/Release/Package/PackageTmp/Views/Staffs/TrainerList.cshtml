@@ -1,0 +1,41 @@
+﻿@model List<FPTGreenManagement.Models.Trainer>
+@{
+    ViewBag.Title = "TrainerList";
+}
+
+<h2>TrainerProfile</h2>
+@using (Html.BeginForm("TrainerList", "Staffs", FormMethod.Get))
+{
+    <div class="form-group">
+        @Html.Label("Search")
+        @Html.TextBox("searchString", null, new { @class = "form-control" })
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">User Name</th>
+            <th scope="col">Working Place</th>
+            <th scope="col">Telephone</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var trainer in Model)
+        {
+            <tr>
+                <td>@trainer.TrainerName</td>
+                <td>@trainer.WorkingPlace</td>
+                <td>@trainer.Telephone</td>
+                <td>
+                    @Html.ActionLink("Update", "UpdateTrainer", "Staffs",
+                                new { id = trainer.Id },
+                                new { @class = "btn btn-success" })
+                    @Html.ActionLink("Detail", "DetailsTrainer", "Staffs",
+                                new { id = trainer.Id },
+                                new { @class = "btn btn-info" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

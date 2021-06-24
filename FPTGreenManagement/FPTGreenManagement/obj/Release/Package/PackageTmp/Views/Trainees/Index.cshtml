@@ -1,0 +1,25 @@
+﻿@model FPTGreenManagement.Models.Trainee
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Trainee Info</h2>
+<div class="panel panel-info">
+    <div class=" panel-body">
+        <p> Full Name: @Model.TraineeName</p>
+        <p> Age: @Model.Age</p>
+        <p> Date Of Birth: @Model.DateOfBirth.ToString("dd/MMM/yyyy")</p>
+        <p> Education: @Model.Education</p>
+        <p> Main Programming Language: @Model.MainProgrammingLanguage</p>
+        <p> TOEIC score: @Model.TOEICscore</p>
+        <p> Experience Detail: @Model.ExperienceDetails</p>
+        <p> Department: @Model.Department</p>
+        <p> Location: @Model.Location</p>
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.ActionLink("Edit Info", "Edit", null, new { @class = "btn btn - primary" })
+
+</div>
+

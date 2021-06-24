@@ -1,0 +1,40 @@
+﻿@model IEnumerable<FPTGreenManagement.Models.TraineeCourse>
+@{
+    ViewBag.Title = "AssignTrainee";
+}
+
+<h2>Trainee in Course</h2>
+<p>
+    @Html.ActionLink(
+               "Assign Trainee to Course",
+               "Create",
+               "TraineeCourses",
+               null,
+               new { @class = "btn btn-primary" }
+               )
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Trainee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Course)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var traineeCourse in Model)
+    {
+        <tr>
+            <td>@traineeCourse.Trainee.UserName</td>
+            <td>@traineeCourse.Course.CourseName</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "TraineeCourses", new { id = traineeCourse.Id }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Delete", "Delete", "TraineeCourses", new { id = traineeCourse.Id }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+
+    }
+
+</table>

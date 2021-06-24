@@ -1,0 +1,21 @@
+﻿@model FPTGreenManagement.Models.Course
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Course Detail</h2>
+
+@Html.ActionLink(
+    "Back to Courses",
+    "Index",
+    "Courses",
+    null,
+    new { @class = "btn btn-primary" })
+
+<div class="panel panel-info">
+    <div class="panel-heading">Course Name: @Model.CourseName </div>
+    <div class="panel-body">
+        <p>Description: @Model.Description</p>
+        <p>Category: @Model.Category.CategoryName</p>
+    </div>
+</div> 

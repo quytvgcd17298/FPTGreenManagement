@@ -1,0 +1,19 @@
+﻿@model FPTGreenManagement.Models.Trainer
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Trainer Info</h2>
+<div class="panel panel-info">
+    <div class=" panel-body">
+    <p> Full Name: @Model.TrainerName</p>
+    <p> Place: @Model.WorkingPlace</p>
+    <p> Phone Number: @Model.Telephone</p>
+        </div>
+</div>
+
+<div class="form-group">
+    @Html.ActionLink("Edit Info", "Edit", null, new { @class = "btn btn - primary" })
+
+</div>
+

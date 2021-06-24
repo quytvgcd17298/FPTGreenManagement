@@ -1,0 +1,74 @@
+﻿@model FPTGreenManagement.Models.Trainee
+@{
+    /**/
+
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Trainee Info </h2>
+@Html.ValidationSummary(false, "", new { @class = "bg-danger" })
+
+@using (Html.BeginForm("Edit", "Trainees", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.TraineeName)
+        @Html.EditorFor(m => m.TraineeName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.TraineeName, "", new { @class = "text-danger" })
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Age)
+        @Html.EditorFor(m => m.Age, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.Age, "", new { @class = "text-danger" })
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.DateOfBirth)
+        @Html.EditorFor(m => m.DateOfBirth,
+         new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+        @Html.ValidationMessageFor(m => m.DateOfBirth, "", new { @class = "text-danger" })
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Education)
+        @Html.EditorFor(m => m.Education, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.Education, "", new { @class = "text-danger" })
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.MainProgrammingLanguage)
+        @Html.EditorFor(m => m.MainProgrammingLanguage, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.MainProgrammingLanguage, "", new { @class = "text-danger" })
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.TOEICscore)
+        @Html.EditorFor(m => m.TOEICscore, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.TOEICscore, "", new { @class = "text-danger" })
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ExperienceDetails)
+        @Html.EditorFor(m => m.ExperienceDetails, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.ExperienceDetails, "", new { @class = "text-danger" })
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Department)
+        @Html.EditorFor(m => m.Department, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.Department, "", new { @class = "text-danger" })
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Location)
+        @Html.EditorFor(m => m.Location, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.Location, "", new { @class = "text-danger" })
+
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+}
+

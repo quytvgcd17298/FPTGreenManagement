@@ -1,0 +1,28 @@
+﻿@model FPTGreenManagement.Models.Trainee
+@{
+    ViewBag.Title = "DetailsTrainee";
+}
+
+<h2>Details Trainee</h2>
+<div class="form-group">
+    @Html.ActionLink("Back to Trainee List", // <-- Link text
+                                 "TraineeList", // <-- Action Method Name
+                                 "Staffs", // <-- Controller Name
+                                 null, // <-- Route value
+                                 new { @class = "btn btn-primary" } // <-- htmlArguments
+                                 )
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">Trainee Name: @Model.TraineeName </div>
+    <div class="panel-body">
+        <p>Age: @Model.Age </p>
+        <p>Date of Birth: @Model.DateOfBirth</p>
+        <p>Educatiton: @Model.Education </p>
+        <p>Main Programming Language: @Model.MainProgrammingLanguage </p>
+        <p>TOEIC Score: @Model.TOEICscore </p>
+        <p>ExperienceDetails: @Model.ExperienceDetails</p>
+        <p>Department: @Model.Department </p>
+        <p>Location: @Model.Location </p>
+
+    </div>
+</div>

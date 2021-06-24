@@ -1,0 +1,37 @@
+﻿@model IEnumerable<FPTGreenManagement.Models.ApplicationUser>
+@{
+    ViewBag.Title = "GetStaffs";
+}
+
+<h2>Show all Staffs</h2>
+<div class="row">
+    <div class="col-md-4">
+        <ul class="list-group">
+            <li class="list-group-item active">Staff List</li>
+            @foreach (var staffs in Model)
+            {
+            <li class="list-group-item">
+                @staffs.UserName
+                <div>
+                    @Html.ActionLink(
+                      "EditPassword",
+                      "ChangePasswordStaff",
+                      "Admin",
+                      new {id = staffs.Id},
+                      new {@class = "text-info"}
+                    )
+                </div>
+                <div>
+                    @Html.ActionLink(
+                      "Delete Account",
+                      "DeleteAccount",
+                      "Admin",
+                      new {id = staffs.Id},
+                      new {@class = "text-info"}
+                    )
+                </div>
+            </li>
+            }
+        </ul>
+    </div>
+</div>

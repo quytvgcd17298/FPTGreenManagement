@@ -1,0 +1,122 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>FPT Greenwich Application</h1>
+    @if (User.IsInRole("Admin"))
+    {
+        <h2>Welcome Admin</h2>
+    }
+    @if (User.IsInRole("Staff"))
+    {
+        <h2>Welcome Staff</h2>
+    }
+    @if (User.IsInRole("Trainer"))
+    {
+        <h2>Welcome Trainer</h2>
+    }
+    @if (User.IsInRole("Trainee"))
+    {
+        <h2>Welcome Trainee</h2>
+    }
+    @if (Request.IsAuthenticated)
+    {
+        <p>Username: @User.Identity.GetUserName()</p>
+    }
+    <p class="lead"> An Application built with ASP.NET MVC5</p>
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="form-group">
+            @Html.ActionLink(
+                 "Create new Staff",
+                 "CreateStaffLogin",
+                 "Account",
+                 null,
+                 new { @class = "btn btn-primary" }
+               )
+        </div>
+        <div class="form-group">
+            @Html.ActionLink(
+                 "Create new Trainer",
+                 "CreateTrainerLogin",
+                 "Account",
+                 null,
+                 new { @class = "btn btn-primary" }
+               )
+        </div>
+        <div class="form-group">
+            @Html.ActionLink(
+                 "Trainer Account",
+                 "GetTrainer",
+                 "Admin",
+                 null,
+                 new { @class = "btn btn-warning" }
+               )
+        </div>
+        <div class="form-group">
+            @Html.ActionLink(
+                 "Staff Account",
+                 "GetStaffs",
+                 "Admin",
+                 null,
+                 new { @class = "btn btn-warning" }
+               )
+        </div>
+    }
+    @if (User.IsInRole("Staff"))
+    {
+        <div class="form-group">
+            @Html.ActionLink(
+            "Create new Trainee",
+            "CreateTraineeLogin",
+            "Account",
+            null,
+            new { @class = "btn btn-primary" }
+          )
+        </div>
+
+        <div class="form-group">
+            @Html.ActionLink("Assign Trainer to Course", "AssignTrainer", "Staffs", null,
+new { @class = "btn btn-warning" })
+        </div>
+        <div class="form-group">
+            @Html.ActionLink("Assign Trainee to Course", "AssignTrainee", "Staffs", null,
+ new { @class = "btn btn-warning" })
+        </div>
+        <div class="form-group">
+            @Html.ActionLink(
+            "Trainee Account",
+            "GetTrainee",
+            "Staffs",
+            null,
+            new { @class = "btn btn-primary" }
+          )
+        </div>
+    }
+</div>
+       @if (User.IsInRole("Trainer"))
+        {
+            <div class="form-group">
+                @Html.ActionLink(
+                        "Update Password",
+                        "GetTrainer",
+                        "Admin",
+                        null,
+                        new { @class = "btn btn-primary" }
+                      )
+            </div>
+        }
+        @if (User.IsInRole("Trainee"))
+        {
+            <div class="form-group">
+                @Html.ActionLink(
+                             "Update Password",
+                             "ChangePasswordTrainee",
+                             "GetTrainee",
+                             null,
+                             new { @class = "btn btn-primary" }
+                           )
+            </div>
+        }

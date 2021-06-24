@@ -1,0 +1,21 @@
+﻿@model FPTGreenManagement.Models.Trainer
+@{
+    ViewBag.Title = "DetailsTrainer";
+}
+
+<h2>Details Trainer</h2>
+<div class="form-group">
+    @Html.ActionLink("Back to Trainer List", // <-- Link text
+                                 "TrainerList", // <-- Action Method Name
+                                 "Staffs", // <-- Controller Name
+                                 null, // <-- Route value
+                                 new { @class = "btn btn-primary" } // <-- htmlArguments
+                                 )
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">Trainer Name: @Model.TrainerName </div>
+    <div class="panel-body">
+        <p>Working Place: @Model.WorkingPlace </p>
+        <p>Telephone: @Model.Telephone</p>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+﻿@model List<FPTGreenManagement.Models.Course>
+@{
+    ViewBag.Title = "IndexCourse";
+}
+
+<h2>CourseManagement</h2>
+@using (Html.BeginForm("IndexCourse", "Staffs", "POST"))
+{
+    <div class="form-group">
+        @Html.Label("Search")
+        @Html.TextBox("searchString", null, new { @class = "form-control" })
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+}
+@Html.ActionLink("Create", "CreateCourse", "Staffs", null, new { @class = "btn btn-primary" })
+@Html.ActionLink("Category Management", "Index", "Categories", null, new { @class = "btn btn-success" })
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Course</th>
+            <th scope="col">Description</th>
+            <th scope="col">Category</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.CourseName</td>
+            <td>@item.Description</td>
+            <td>@item.Category.CategoryName</td>
+            <td>
+                @Html.ActionLink("Edit", "EditCourse", "Staffs",
+                             new { id = item.Id },
+                             new { @class = "btn btn-warning" })
+                @Html.ActionLink("Delete", "DeleteCourse", "Staffs",
+                             new { id = item.Id },
+                             new { @class = "btn btn-danger" })
+                @Html.ActionLink("Details", "DetailCourse", "Staffs",
+                             new { id = item.Id },
+                             new { @class = "btn btn-primary" })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

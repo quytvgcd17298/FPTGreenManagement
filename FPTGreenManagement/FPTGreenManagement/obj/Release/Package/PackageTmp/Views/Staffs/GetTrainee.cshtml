@@ -1,0 +1,37 @@
+﻿@model IEnumerable<FPTGreenManagement.Models.ApplicationUser>
+@{
+    ViewBag.Title = "GetTrainee";
+}
+
+<h2>Show all Trainees</h2>
+<div class="row">
+    <div class="col-md-4">
+        <ul class="list-group">
+            <li class="list-group-item active">Trainee List</li>
+            @foreach (var trainee in Model)
+            {
+                <li class="list-group-item">
+                    @trainee.UserName
+                    <div>
+                        @Html.ActionLink(
+                          "EditPassword",
+                          "ChangePasswordTrainee",
+                          "Staffs",
+                          new {id = trainee.Id},
+                          new {@class = "text-info"}
+                        )
+                    </div>
+                    <div>
+                        @Html.ActionLink(
+                          "Delete Account",
+                          "RemoveTrainee",
+                          "Staffs",
+                          new {id = trainee.Id},
+                          new {@class = "text-info"}
+                        )
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

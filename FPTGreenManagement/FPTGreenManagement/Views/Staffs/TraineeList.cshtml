@@ -1,0 +1,55 @@
+﻿@model List<FPTGreenManagement.Models.Trainee>
+@{
+    ViewBag.Title = "TraineeList";
+}
+
+<h2>TrainerProfile</h2>
+@using (Html.BeginForm("TraineeList", "Staffs", FormMethod.Get))
+{
+    <div class="form-group">
+        @Html.Label("Search")
+        @Html.TextBox("searchString", null, new { @class = "form-control" })
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">User Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Date Of Birth</th>
+            <th scope="col">Education</th>
+            <th scope="col">MainProgrammingLanguage</th>
+            <th scope="col">TOEICscore</th>
+            <th scope="col">ExperienceDetails</th>
+            <th scope="col">Department</th>
+            <th scope="col">Location</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var trainer in Model)
+        {
+        <tr>
+            <td>@trainer.TraineeName</td>
+            <td>@trainer.Age</td>
+            <td>@trainer.DateOfBirth</td>
+            <td>@trainer.Education</td>
+            <td>@trainer.MainProgrammingLanguage</td>
+            <td>@trainer.TOEICscore</td>
+            <td>@trainer.ExperienceDetails</td>
+            <td>@trainer.Department</td>
+            <td>@trainer.Location</td>
+
+            <td>
+                @Html.ActionLink("Update", "UpdateTrainee", "Staffs",
+                            new { id = trainer.Id },
+                            new { @class = "btn btn-success" })
+                @Html.ActionLink("Detail", "DetailsTrainee", "Staffs",
+                            new { id = trainer.Id },
+                            new { @class = "btn btn-info" })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
